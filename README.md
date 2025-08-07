@@ -1,5 +1,26 @@
 # BLE-Firmware-Analysis
-Tool that analyzes stripped Bluetooth Low Energy Firmware (from vendors: TI &amp; Nordic). Functions are identified and are commented based on NIST recommendations.
+Tool that analyzes stripped Bluetooth Low Energy Firmware (from vendors: TI &amp; Nordic) to detect Bluetooth Low Energy (BLE)-related functions. Functions are identified and are commented based on NIST recommendations.
+## Docker 
+To ensure a reproducible, portable, and isolated analysis environment for embedded firmware reverse engineering, this project is containerized using Docker. The provided Dockerfile creates a complete firmware analysis workspace based on Ubuntu 22.04. It installs essential tools including OpenJDK 17, Python 3, Ghidra v10.4, and BinDiff 8, along with all necessary build tools and libraries.
+
+## Steps for Usage
+
+After cloning the repo, follow the steps below:
+
+ Build the Docker image:
+   ```docker build -t ble-firmware-env .```
+
+ Make the run script executable:
+   ```chmod +x run.sh```
+
+ Run the container:
+
+   On Windows (Git Bash or WSL):
+   ```docker run --rm -it -v "${PWD}\ti:/workdir" -w /workdir ble-firmware-env ./run.sh```
+
+   On Linux / macOS:
+   ```docker run --rm -it -v "$(pwd):/workdir" -w /workdir ble-firmware-env ./run.sh```
+   
 
 ## Steps for Usage
 1. Go to the respective directory (ti/nordic)
